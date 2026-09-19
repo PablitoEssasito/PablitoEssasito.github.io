@@ -25,5 +25,5 @@ fetch("tools.json")
   })
   .catch(() => {
     document.getElementById("tools").innerHTML =
-      '<p class="loading">Nie udało się załadować listy narzędzi.</p>';
+      '<p class="loading">Failed to load the tools list.</p>';
   });

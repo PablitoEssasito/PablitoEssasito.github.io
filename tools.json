@@ -1,13 +1,13 @@
 [
   {
     "name": "WT Bombing Calculator",
-    "description": "Kalkulator zrzutu bomb w War Thunder — wysokość, prędkość i kąt nalotu policzone za Ciebie.",
+    "description": "War Thunder bomb drop calculator — altitude, speed and dive angle crunched for you.",
     "url": "https://pablitoessasito.github.io/wt-bombing-calculator/",
     "tag": "War Thunder"
   },
   {
     "name": "WT Battlepass Helper",
-    "description": "Śledzi postęp Battle Passa w War Thunder i pomaga zaplanować, ile grać, żeby zdążyć.",
+    "description": "Tracks your War Thunder Battle Pass progress and helps you plan how much to play to finish in time.",
     "url": "https://pablitoessasito.github.io/wt-battlepass-helper/",
     "tag": "War Thunder"
   }
