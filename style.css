@@ -20,6 +20,18 @@ body {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Centres the hero and tools as one block so a short tool list still fills
+   the viewport instead of leaving a gap above the footer. */
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
 }
 
 .bg-glow {
@@ -38,10 +50,141 @@ body {
   to   { transform: translate(2%, 3%) scale(1.08); }
 }
 
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(91, 157, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 157, 255, 0.07) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 75%);
+}
+
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  width: var(--size, 3px);
+  height: var(--size, 3px);
+  border-radius: 50%;
+  background: var(--spark-color, var(--accent));
+  opacity: 0;
+  box-shadow: 0 0 6px 1px currentColor;
+  animation: rise var(--duration, 14s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  8% { opacity: 0.8; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(-105vh) translateX(var(--drift, 20px)); opacity: 0; }
+}
+
+.planes {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.plane {
+  position: absolute;
+  top: var(--y, 20%);
+  left: -15%;
+  width: var(--w, 60px);
+  color: var(--plane-color, var(--accent));
+  opacity: var(--op, 0.16);
+  animation: fly var(--duration, 45s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.plane.reverse {
+  left: auto;
+  right: -15%;
+  transform: scaleX(-1);
+  animation-name: fly-rev;
+}
+
+@keyframes fly {
+  from { left: -15%; }
+  to   { left: 115%; }
+}
+
+@keyframes fly-rev {
+  from { right: -15%; }
+  to   { right: 115%; }
+}
+
+.plane-wrap {
+  position: relative;
+  width: 100%;
+  height: calc(var(--w, 64px) / 1.667);
+  animation: bob var(--bob-duration, 4s) ease-in-out infinite;
+  animation-delay: var(--bob-delay, 0s);
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(var(--bob-amt, 6px)); }
+}
+
+.plane-body {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+.plane-body svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Anchored at the exhaust plane, which both planforms place at 10% of the box. */
+.plane-trail {
+  position: absolute;
+  right: calc(var(--w, 64px) * 0.9);
+  transform: translateY(-50%);
+  width: 44px;
+  height: 1px;
+  background: linear-gradient(to left, currentColor, transparent);
+}
+
+.plane-flash {
+  position: absolute;
+  right: calc(var(--w, 64px) * var(--nose-inset, 0.1));
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffd166;
+  box-shadow: 0 0 6px 2px #ffd166;
+  opacity: 0;
+  animation: flash var(--flash-duration, 5s) linear infinite;
+  animation-delay: var(--flash-delay, 0s);
+}
+
+@keyframes flash {
+  0%, 95%, 100% { opacity: 0; }
+  96%, 98%      { opacity: 1; }
+}
+
 .hero {
   max-width: 780px;
   margin: 0 auto;
-  padding: 5rem 1.5rem 2.5rem;
+  padding: 2rem 1.5rem 2.75rem;
   text-align: center;
   animation: fadeInUp 0.7s ease both;
 }
@@ -57,10 +200,18 @@ body {
 .hero h1 {
   font-size: clamp(2.2rem, 5vw, 3.2rem);
   margin: 0 0 1rem;
-  background: linear-gradient(90deg, var(--text), var(--accent));
+  background: linear-gradient(100deg, var(--text) 20%, var(--accent) 40%, var(--accent-2) 60%, var(--text) 80%);
+  background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: shimmer 7s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .dot { color: var(--accent-2); }
@@ -106,7 +257,11 @@ body {
   animation-play-state: paused;
 }
 
-.kofi-icon { font-size: 1.1rem; }
+.btn-icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
 
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 94, 91, 0.35); }
@@ -127,7 +282,44 @@ body {
 main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  flex: none;
+}
+
+.section-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  position: relative;
+  padding-left: 0.9rem;
+  flex: 1;
+}
+
+/* Hairline that runs from the heading out to the edge of the grid. */
+.section-note::before {
+  content: "";
+  position: absolute;
+  left: -0.4rem;
+  top: -0.25rem;
+  width: 1px;
+  height: 1.1em;
+  background: var(--border);
 }
 
 .tools-grid {
@@ -139,6 +331,8 @@ main {
 .loading { color: var(--muted); text-align: center; grid-column: 1 / -1; }
 
 .tool-card {
+  --mx: 50%;
+  --my: 50%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -156,40 +350,80 @@ main {
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
+.tool-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(240px circle at var(--mx) var(--my), rgba(91, 157, 255, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
 .tool-card:hover {
   transform: translateY(-6px);
   border-color: var(--accent);
   background: var(--surface-hover);
 }
 
-.tool-card::after {
-  content: "→";
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
-  color: var(--muted);
-  transition: transform 0.25s ease, color 0.25s ease;
+.tool-card:hover::before {
+  opacity: 1;
 }
 
-.tool-card:hover::after {
-  transform: translateX(4px);
-  color: var(--accent);
+/* Keep the card's content above the hover glow layer. */
+.tool-card > * {
+  position: relative;
 }
 
 .tool-tag {
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--accent);
   background: rgba(91, 157, 255, 0.12);
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem 0.25rem 0.55rem;
   border-radius: 999px;
 }
 
-.tool-card h2 {
+.tool-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
+}
+
+.tool-card h3 {
   margin: 0;
   font-size: 1.2rem;
+}
+
+.tool-foot {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.tool-card:hover .tool-foot {
+  color: var(--accent);
+  border-color: rgba(91, 157, 255, 0.35);
+}
+
+.tool-arrow {
+  transition: transform 0.25s ease;
+}
+
+.tool-card:hover .tool-arrow {
+  transform: translateX(4px);
 }
 
 .tool-card p {
@@ -212,8 +446,9 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bg-glow, .btn.kofi, .hero, .tool-card {
+  .bg-glow, .btn.kofi, .hero, .hero h1, .tool-card, .particle, .plane, .plane-wrap, .plane-flash {
     animation: none !important;
   }
   .tool-card { opacity: 1; transform: none; }
+  .particles, .planes { display: none; }
 }

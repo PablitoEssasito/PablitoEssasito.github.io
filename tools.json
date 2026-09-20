@@ -1,13 +1,13 @@
 [
   {
     "name": "WT Bombing Calculator",
-    "description": "War Thunder bomb drop calculator — altitude, speed and dive angle crunched for you.",
+    "description": "Pick an aircraft, get the exact bomb loadout per base, how many bases it flattens, and which loadout earns the most research.",
     "url": "https://pablitoessasito.github.io/wt-bombing-calculator/",
     "tag": "War Thunder"
   },
   {
     "name": "WT Battlepass Helper",
-    "description": "Tracks your War Thunder Battle Pass progress and helps you plan how much to play to finish in time.",
+    "description": "Enter your current Battle Pass progress, logins and challenges to see which level is still within reach before the season ends.",
     "url": "https://pablitoessasito.github.io/wt-battlepass-helper/",
     "tag": "War Thunder"
   }

@@ -3,31 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PablitoEssasito — gaming tools</title>
+<title>War Thunder Tools Hub by Pablito Essasito</title>
 <meta name="description" content="Gaming tools (War Thunder and more) built by PablitoEssasito.">
-<link rel="icon" href="data:,">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-glow"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
+  <div class="planes" id="planes" aria-hidden="true"></div>
 
-  <header class="hero">
-    <p class="eyebrow">github.com/PablitoEssasito</p>
-    <h1>Gaming tools<span class="dot">.</span></h1>
-    <p class="subtitle">Small calculators and helpers that make gaming easier. Mostly War Thunder, mostly for myself — but here you go.</p>
-    <div class="hero-actions">
-      <a class="btn kofi" href="https://ko-fi.com/pablitoessasito" target="_blank" rel="noopener">
-        <span class="kofi-icon">☕</span> Buy me a coffee on Ko-fi
-      </a>
-      <a class="btn ghost" href="https://github.com/PablitoEssasito" target="_blank" rel="noopener">GitHub profile</a>
-    </div>
-  </header>
+  <div class="page">
+    <header class="hero">
+      <p class="eyebrow">github.com/PablitoEssasito</p>
+      <h1>War Thunder Tools Hub<span class="dot">.</span></h1>
+      <p class="subtitle">Calculators and helpers that make grinding easier.</p>
+      <div class="hero-actions">
+        <a class="btn kofi" href="https://ko-fi.com/pablitoessasito" target="_blank" rel="noopener">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9h13v5a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V9Z"/>
+            <path d="M16 10h2a2.5 2.5 0 0 1 0 5h-2"/>
+            <path d="M7 3v2.5M11.5 3v2.5"/>
+          </svg>
+          Buy me a coffee
+        </a>
+        <a class="btn ghost" href="https://github.com/PablitoEssasito" target="_blank" rel="noopener">GitHub profile</a>
+      </div>
+    </header>
 
-  <main>
-    <section id="tools" class="tools-grid" aria-label="Tools list">
-      <p class="loading">Loading tools…</p>
-    </section>
-  </main>
+    <main>
+      <section class="tools-section" aria-labelledby="tools-heading">
+        <div class="section-head">
+          <h2 id="tools-heading">Tools</h2>
+          <p class="section-note">Free, no sign-up, runs in your browser.</p>
+        </div>
+        <div id="tools" class="tools-grid">
+          <p class="loading">Loading tools…</p>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <footer>
     <p>Made with ❤️ and way too many hours in War Thunder. © <span id="year"></span> PablitoEssasito.</p>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#131722"/>
+  <!-- MiG-29 planform, rotated nose-up. Drawn as half-outlines plus their
+       mirror image, in the same 200x120 space the site's background jets use. -->
+  <g transform="translate(12.8,64.8) scale(0.32) rotate(-90)">
+    <g fill="#ff4d4d">
+      <path d="M193,60L178,58.8L175,57.8Q166,54 158,51Q150,50.2 140,49.6L128,49Q116,46 107,42Q102,40 99,39L66.6,3L55,5L52,39L44,39.5L23,22L12,23L14,39L18,41.5L18,55L26,56.5L26,60Z"/>
+      <path d="M62,45L50,33L42,33.5L38,45Z"/>
+      <path d="M193,60L178,58.8L175,57.8Q166,54 158,51Q150,50.2 140,49.6L128,49Q116,46 107,42Q102,40 99,39L66.6,3L55,5L52,39L44,39.5L23,22L12,23L14,39L18,41.5L18,55L26,56.5L26,60Z" transform="translate(0,120) scale(1,-1)"/>
+      <path d="M62,45L50,33L42,33.5L38,45Z" transform="translate(0,120) scale(1,-1)"/>
+    </g>
+  </g>
+</svg>
