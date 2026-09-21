@@ -121,6 +121,28 @@ function attachCardGlow(card) {
 spawnParticles();
 spawnPlanes();
 
+function injectToolsStructuredData(tools) {
+  const itemListElement = tools.map((tool, i) => ({
+    "@type": "SoftwareApplication",
+    position: i + 1,
+    name: tool.name,
+    url: tool.url,
+    description: tool.description,
+    applicationCategory: "GameApplication",
+    operatingSystem: "Any (Web Browser)",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  }));
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement,
+  });
+  document.head.appendChild(script);
+}
+
 fetch("tools.json")
   .then((res) => res.json())
   .then((tools) => {
@@ -145,6 +167,8 @@ fetch("tools.json")
       attachCardGlow(card);
       grid.appendChild(card);
     });
+
+    injectToolsStructuredData(tools);
   })
   .catch(() => {
     document.getElementById("tools").innerHTML =
